@@ -1,19 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {getAddressTest} from '../address.reducer';
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+import {State} from '../../app.reducers';
+import {CreateAddressAction} from '../address.actions';
 
 @Component({
   selector: 'app-address-overview',
   template: `
     <p>
-      address-overview Works!
+      Test works? <span *ngIf="(test$ | async) === true">YES</span>
     </p>
   `,
   styles: []
 })
-export class AddressOverviewComponent implements OnInit {
+export class AddressOverviewComponent {
+  test$: Observable<boolean>;
 
-  constructor() { }
+  constructor(private store: Store<State>) {
+    this.test$ = this.store.select(getAddressTest);
+    this.test$.subscribe(result => {
+      console.log(result);
+    });
 
-  ngOnInit() {
+    this.store.dispatch(new CreateAddressAction());
   }
+
 
 }
