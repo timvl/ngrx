@@ -8,9 +8,8 @@ import {CreateAddressAction} from '../address.actions';
 @Component({
   selector: 'app-address-overview',
   template: `
-    <p>
-      Test works? <span *ngIf="(test$ | async) === true">YES</span>
-    </p>
+    Test works? <span *ngIf="(test$ | async) === true">YES</span>
+    <app-create-address></app-create-address>
   `,
   styles: []
 })
