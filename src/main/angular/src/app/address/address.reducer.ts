@@ -13,17 +13,25 @@ export const reducers = {
 
 export interface AddressState {
   'addresses': Array<Address>;
+  'loading': boolean;
 }
 
 const initialState: AddressState = {
-  addresses: []
+  addresses: [],
+  loading: false
 };
 
 export function addressReducer(state = initialState, action: actions.Actions) {
   switch (action.type) {
-    case actions.CREATE_ADDRESS:
+    case actions.CREATE_ADDRESS_REQUEST:
       return {
         ...state,
+        loading: true
+      };
+    case actions.CREATE_ADDRESS_RESPONSE:
+      return {
+        ...state,
+        loading: false,
         addresses: [...state.addresses, action.address]
       };
     default:
@@ -34,4 +42,6 @@ export function addressReducer(state = initialState, action: actions.Actions) {
 export const getAddressFeatureState = createFeatureSelector<State>('addresses');
 
 export const getAddresses = createSelector(getAddressFeatureState, state => state ? state.addresses.addresses : false);
+
+export const createAddressLoading = createSelector(getAddressFeatureState, state => state ? state.addresses.loading : false);
 

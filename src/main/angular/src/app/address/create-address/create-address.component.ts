@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Address, AddressImpl} from '../model/address';
 
@@ -27,14 +27,15 @@ import {Address, AddressImpl} from '../model/address';
           <label for="name">City</label>
           <input type="text" id="aForm_1" placeholder="City" size="45" formControlName="city">
         </div>
-        <button type="submit" class="btn btn-info-outline" [disabled]="!addressForm.valid">Submit</button>
+        <button type="submit" [clrLoading]="loading" class="btn btn-info-outline" [disabled]="!addressForm.valid">Submit</button>
       </section>
     </form>
   `,
   styles: []
 })
 export class CreateAddressComponent {
-  @Output() createAddress = new EventEmitter<Address>()
+  @Output() createAddress = new EventEmitter<Address>();
+  @Input() loading;
   addressForm: FormGroup;
 
   constructor(private fb: FormBuilder) {

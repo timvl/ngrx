@@ -1,13 +1,21 @@
 import {Action} from '@ngrx/store';
 import {Address} from './model/address';
 
-export const CREATE_ADDRESS = '[Address] Create Address';
+export const CREATE_ADDRESS_REQUEST = '[Address] Create Address Request';
+export const CREATE_ADDRESS_RESPONSE = '[Address] Create Address Response';
 
-export class CreateAddressAction implements Action {
-  readonly type = CREATE_ADDRESS;
+export class CreateAddressRequestAction implements Action {
+  readonly type = CREATE_ADDRESS_REQUEST;
 
   constructor(public address: Address) {
   }
 }
 
-export type Actions = CreateAddressAction;
+export class CreateAddressResponseAction implements Action {
+  readonly type = CREATE_ADDRESS_RESPONSE;
+
+  constructor(public address: Address) {
+  }
+}
+
+export type Actions = CreateAddressRequestAction | CreateAddressResponseAction;
