@@ -6,26 +6,29 @@ import {AddressImpl} from '../model/address';
   selector: 'app-create-address',
   template: `
     <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" novalidate>
-      <label class="center-block">Name:
-        <input class="form-control" formControlName="name">
-      </label>
-      <br/>
-      <label class="center-block">Street:
-        <input class="form-control" formControlName="street">
-      </label>
-      <br/>
-      <label class="center-block">Number:
-        <input class="form-control" formControlName="number">
-      </label>
-      <br/>
-      <label class="center-block">Zip:
-        <input class="form-control" formControlName="zip">
-      </label>
-      <br/>
-      <label class="center-block">City:
-        <input class="form-control" formControlName="city">
-      </label>
-      <button type="submit" [disabled]="!addressForm.valid" class="btn btn-success">Save</button> &nbsp;
+      <section class="form-block">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="aForm_1" placeholder="Name" size="45" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="name">Street</label>
+          <input type="text" id="aForm_1" placeholder="Street" size="45" formControlName="street">
+        </div>
+        <div class="form-group">
+          <label for="name">Number</label>
+          <input type="text" id="aForm_1" placeholder="Number" size="10" formControlName="number">
+        </div>
+        <div class="form-group">
+          <label for="name">Zip</label>
+          <input type="text" id="aForm_1" placeholder="Zip" size="45" formControlName="zip">
+        </div>
+        <div class="form-group">
+          <label for="name">City</label>
+          <input type="text" id="aForm_1" placeholder="City" size="45" formControlName="city">
+        </div>
+        <button type="submit" [clrLoading]="loading$ | async" class="btn btn-info-outline" [disabled]="!addressForm.valid">Submit</button>
+      </section>
     </form>
   `,
   styles: []

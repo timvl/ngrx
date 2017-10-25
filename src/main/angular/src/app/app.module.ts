@@ -10,6 +10,7 @@ import {metaReducers, reducers} from './app.reducers';
 import {environment} from '../environments/environment';
 import {CustomRouterStateSerializer} from './shared/custom-router-state-serializer';
 import {AddressModule} from './address/address.module';
+import {ClarityModule} from 'clarity-angular';
 
 
 @NgModule({
@@ -23,8 +24,8 @@ import {AddressModule} from './address/address.module';
     !environment.production ? StoreDevtoolsModule.instrument(<StoreDevtoolsOptions>{maxAge: 25}) : [],
     StoreRouterConnectingModule,
     EffectsModule.forRoot([]),
-    AddressModule
-
+    AddressModule,
+    ClarityModule
   ],
   providers: [
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer}

@@ -8,13 +8,15 @@ import {AddressOverviewComponent} from './address-overview/address-overview.comp
 import {CreateAddressComponent} from './create-address/create-address.component';
 import {AddressOverviewTableComponent} from './address-overview-table/address-overview-table.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ClarityModule} from 'clarity-angular';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature('addresses', reducers),
-    EffectsModule.forFeature([AddressEffects])
+    EffectsModule.forFeature([AddressEffects]),
+    ClarityModule
   ],
   declarations: [
     AddressOverviewComponent,
