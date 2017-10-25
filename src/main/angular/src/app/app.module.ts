@@ -9,11 +9,12 @@ import {EffectsModule} from '@ngrx/effects';
 import {metaReducers, reducers} from './app.reducers';
 import {environment} from '../environments/environment';
 import {CustomRouterStateSerializer} from './shared/custom-router-state-serializer';
+import {AddressModule} from './address/address.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +23,7 @@ import {CustomRouterStateSerializer} from './shared/custom-router-state-serializ
     !environment.production ? StoreDevtoolsModule.instrument(<StoreDevtoolsOptions>{maxAge: 25}) : [],
     StoreRouterConnectingModule,
     EffectsModule.forRoot([]),
+    AddressModule
 
   ],
   providers: [

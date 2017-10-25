@@ -1,17 +1,9 @@
 import {
   ActionReducerMap,
-  createSelector,
-  createFeatureSelector,
   ActionReducer,
   MetaReducer,
 } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
-
-/**
- * storeFreeze prevents state from being mutated. When mutation occurs, an
- * exception will be thrown. This is useful during development mode to
- * ensure that none of the reducers accidentally mutates the state.
- */
 import {environment} from '../environments/environment';
 import {storeFreeze} from 'ngrx-store-freeze';
 import {RouterStateUrl} from './shared/router-state-url';
