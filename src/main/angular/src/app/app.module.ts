@@ -11,6 +11,7 @@ import {environment} from '../environments/environment';
 import {CustomRouterStateSerializer} from './shared/custom-router-state-serializer';
 import {AddressModule} from './address/address.module';
 import {ClarityModule} from 'clarity-angular';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ClarityModule} from 'clarity-angular';
     StoreRouterConnectingModule,
     EffectsModule.forRoot([]),
     AddressModule,
-    ClarityModule
+    ClarityModule,
+    HttpClientModule,
   ],
   providers: [
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer}
