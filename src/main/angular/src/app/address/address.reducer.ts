@@ -1,6 +1,7 @@
 import * as fromRoot from '../app.reducers';
 import * as actions from './address.actions';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
+import {Address} from './model/address';
 
 export interface State extends fromRoot.State {
   addresses: AddressState;
@@ -11,11 +12,11 @@ export const reducers = {
 };
 
 export interface AddressState {
-  'test': boolean;
+  'addresses': Array<Address>;
 }
 
 const initialState: AddressState = {
-  test: false
+  addresses: []
 };
 
 export function addressReducer(state = initialState, action: actions.Actions) {
@@ -23,7 +24,7 @@ export function addressReducer(state = initialState, action: actions.Actions) {
     case actions.CREATE_ADDRESS:
       return {
         ...state,
-        test: true,
+        addresses: [...state.addresses, action.address]
       };
     default:
       return state;
@@ -32,5 +33,5 @@ export function addressReducer(state = initialState, action: actions.Actions) {
 
 export const getAddressFeatureState = createFeatureSelector<State>('addresses');
 
-export const getAddressTest = createSelector(getAddressFeatureState, state => state ? state.addresses.test : false);
+export const getAddresses = createSelector(getAddressFeatureState, state => state ? state.addresses.addresses : false);
 

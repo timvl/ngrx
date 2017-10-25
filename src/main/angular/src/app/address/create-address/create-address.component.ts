@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
-import {AddressImpl} from '../model/address';
+import {Address, AddressImpl} from '../model/address';
 
 @Component({
   selector: 'app-create-address',
@@ -27,13 +27,14 @@ import {AddressImpl} from '../model/address';
           <label for="name">City</label>
           <input type="text" id="aForm_1" placeholder="City" size="45" formControlName="city">
         </div>
-        <button type="submit" [clrLoading]="loading$ | async" class="btn btn-info-outline" [disabled]="!addressForm.valid">Submit</button>
+        <button type="submit" class="btn btn-info-outline" [disabled]="!addressForm.valid">Submit</button>
       </section>
     </form>
   `,
   styles: []
 })
 export class CreateAddressComponent {
+  @Output() createAddress = new EventEmitter<Address>()
   addressForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -57,7 +58,7 @@ export class CreateAddressComponent {
   onSubmit() {
     const form = this.addressForm.value;
     const address = new AddressImpl(form.name, form.street, form.number, form.zip, form.city);
-    console.log(address);
+    this.createAddress.emit(address);
     this.ngOnChanges();
   }
 }
