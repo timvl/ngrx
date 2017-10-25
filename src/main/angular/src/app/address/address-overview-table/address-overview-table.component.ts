@@ -4,7 +4,7 @@ import {Address} from '../model/address';
 @Component({
   selector: 'app-address-overview-table',
   template: `
-    <clr-datagrid>
+    <clr-datagrid [clrDgLoading]="loading">
       <clr-dg-column [clrDgField]="'name'">Name</clr-dg-column>
       <clr-dg-column [clrDgField]="'street'">Street</clr-dg-column>
       <clr-dg-column [clrDgField]="'number'">Number</clr-dg-column>
@@ -25,4 +25,5 @@ import {Address} from '../model/address';
 })
 export class AddressOverviewTableComponent {
   @Input() addresses: Array<Address>;
+  @Input() loading: boolean;
 }
