@@ -4,17 +4,20 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {State} from '../../app.reducers';
 import {Address} from '../model/address';
+
 import {CreateAddressRequestAction, LoadAddressesRequestAction} from '../address.actions';
+import * as RouterActions from "../../shared/router.actions";
 
 @Component({
   selector: 'app-address-overview',
   template: `
-    <app-create-address 
-      [loading]="createAddressLoading$ | async" 
+    <app-create-address
+      [loading]="createAddressLoading$ | async"
       (createAddress)="createAddress($event)"></app-create-address>
-    
-    <app-address-overview-table 
+
+    <app-address-overview-table
       [loading]="loadingAddresses$ | async"
+      (selectAddress)="selectAddress($event)"
       [addresses]="addresses$ | async"></app-address-overview-table>
   `,
   styles: []
@@ -33,5 +36,11 @@ export class AddressOverviewComponent {
 
   createAddress(address: Address) {
     this.store.dispatch(new CreateAddressRequestAction(address));
+  }
+
+  selectAddress(address: Address) {
+    this.store.dispatch(new RouterActions.Go({
+      path: [`/address/detail/${address.id}`]
+    }));
   }
 }

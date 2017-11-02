@@ -10,6 +10,7 @@ import {AddressOverviewTableComponent} from './address-overview-table/address-ov
 import {ReactiveFormsModule} from '@angular/forms';
 import {ClarityModule} from 'clarity-angular';
 import {AddressService} from './address-service/address.service';
+import { AddressDetailComponent } from './address-detail/address-detail.component';
 
 @NgModule({
   imports: [
@@ -22,10 +23,12 @@ import {AddressService} from './address-service/address.service';
   declarations: [
     AddressOverviewComponent,
     CreateAddressComponent,
-    AddressOverviewTableComponent
+    AddressOverviewTableComponent,
+    AddressDetailComponent
   ],
   exports: [
-    AddressOverviewComponent
+    AddressOverviewComponent,
+    AddressDetailComponent
   ],
   providers: [
     AddressService

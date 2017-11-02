@@ -12,6 +12,7 @@ import {CustomRouterStateSerializer} from './shared/custom-router-state-serializ
 import {AddressModule} from './address/address.module';
 import {ClarityModule} from 'clarity-angular';
 import {HttpClientModule} from '@angular/common/http';
+import {RouterEffects} from './shared/router.effects';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import {HttpClientModule} from '@angular/common/http';
     StoreModule.forRoot(reducers, {metaReducers}),
     !environment.production ? StoreDevtoolsModule.instrument(<StoreDevtoolsOptions>{maxAge: 25}) : [],
     StoreRouterConnectingModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([RouterEffects]),
     AddressModule,
     ClarityModule,
     HttpClientModule,
